@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="org.cljmapdemo"
+          android:versionCode="{{version-code}}"
+          android:versionName="{{version-name}}" >
+
+  <uses-sdk android:minSdkVersion="17" />
+
+  <application
+      android:name="neko.App"
+      android:icon="@drawable/ic_launcher"
+      android:label="CljMapDemo">
+    <activity android:name=".SplashActivity"
+              android:theme="@android:style/Theme.Translucent.NoTitleBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity android:name=".MainActivity">
+      <intent-filter>
+        <action android:name='org.cljmapdemo.MAIN'/>
+        <category android:name='android.intent.category.DEFAULT'/>
+      </intent-filter>
+    </activity>
+    <activity android:name=".MapActivity">
+      <intent-filter>
+        <action android:name='org.cljmapdemo.MAP'/>
+        <category android:name='android.intent.category.DEFAULT'/>
+      </intent-filter>
+    </activity>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-feature
+              android:glEsVersion="0x00020000"
+              android:required="true"/>
+    <meta-data
+          android:name="com.google.android.gms.version"
+          android:value="@integer/google_play_services_version" />
+    <meta-data
+              android:name="com.google.android.geo.API_KEY"
+              android:value=""/>
+  </application>
+
+  {{#debug-build}}
+  <!-- Inside this section the permission will work only in debug builds (this is -->
+  <!-- needed for remote REPL). If your application logic requires Internet -->
+  <!-- permission too, move it out of the section. -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+  {{/debug-build}}
+</manifest>
